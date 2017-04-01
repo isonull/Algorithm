@@ -3,11 +3,16 @@ package binarySearchTree;
 public class BinarySearchTree<T extends Comparable<T>> {
 	protected BinarySearchTreeNode<T> root;
 	protected int size = 0;
+	protected int depth = 0;
 
 	public boolean insert(BinarySearchTreeNode<T> node) {
+		int depthTemp = 0;
 		BinarySearchTreeNode<T> y = null;
 		BinarySearchTreeNode<T> x = root;
+		if (root != null && node.getKey().compareTo(root.getKey()) < 0) {
+		}
 		while (x != null) {
+			++depthTemp;
 			y = x;
 			if (node.getKey().compareTo(x.getKey()) < 0) {
 				x = x.getChildAt(0);
@@ -22,16 +27,20 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		if (y == null) {
 			root = node;
 			++size;
+			depth = 1;
 			return true;
 		} else if (node.getKey().compareTo(y.getKey()) < 0) {
 			y.setLeftChild(node);
 			++size;
+			depth += depthTemp == depth ? 1 : 0;
 			return true;
 		} else if (node.getKey().compareTo(y.getKey()) > 0) {
 			y.setRightChild(node);
 			++size;
+			depth += depthTemp == depth ? 1 : 0;
 			return true;
 		} else {
+
 			// TODO: replace the node but we do nothing here, value not
 			// implemented;
 			return false;

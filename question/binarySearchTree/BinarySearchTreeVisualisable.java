@@ -8,51 +8,6 @@ import java.util.Stack;
 
 public class BinarySearchTreeVisualisable<T extends Comparable<T>> extends BinarySearchTree<T> {
 
-	protected int depth;
-
-	@Override
-	public boolean insert(BinarySearchTreeNode<T> node) {
-		int depthTemp = 0;
-		BinarySearchTreeNode<T> y = null;
-		BinarySearchTreeNode<T> x = root;
-		if (root != null && node.getKey().compareTo(root.getKey()) < 0) {
-		}
-		while (x != null) {
-			++depthTemp;
-			y = x;
-			if (node.getKey().compareTo(x.getKey()) < 0) {
-				x = x.getChildAt(0);
-			} else if (node.getKey().compareTo(x.getKey()) > 0) {
-				x = x.getChildAt(1);
-			} else {
-				// TODO: replace the node;
-				return false;
-			}
-		}
-		node.setParent(y);
-		if (y == null) {
-			root = node;
-			++size;
-			depth = 1;
-			return true;
-		} else if (node.getKey().compareTo(y.getKey()) < 0) {
-			y.setLeftChild(node);
-			++size;
-			depth += depthTemp == depth ? 1 : 0;
-			return true;
-		} else if (node.getKey().compareTo(y.getKey()) > 0) {
-			y.setRightChild(node);
-			++size;
-			depth += depthTemp == depth ? 1 : 0;
-			return true;
-		} else {
-
-			// TODO: replace the node but we do nothing here, value not
-			// implemented;
-			return false;
-		}
-	}
-
 	private class nodeS {
 		BinarySearchTreeNode<T> node;
 		boolean leftDone = false;
