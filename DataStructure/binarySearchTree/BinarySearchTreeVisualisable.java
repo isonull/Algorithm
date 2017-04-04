@@ -6,17 +6,17 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.Stack;
 
-public class BinarySearchTreeVisualisable<T extends Comparable<T>> extends BinarySearchTree<T> {
+public class BinarySearchTreeVisualisable<T extends Comparable<T>, U> extends BinarySearchTree<T, U> {
 
 	private class nodeS {
-		BinarySearchTreeNode<T> node;
+		BinarySearchTreeNode<T, U> node;
 		boolean leftDone = false;
 		boolean selfDone = false;
 		boolean rightDone = false;
 		int X = -1;
 		int Y = -1;
 
-		public nodeS(BinarySearchTreeNode<T> node) {
+		public nodeS(BinarySearchTreeNode<T, U> node) {
 			this.node = node;
 			this.leftDone = node.getChildAt(0) == null;
 			this.rightDone = node.getChildAt(1) == null;

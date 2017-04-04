@@ -1,34 +1,34 @@
 package binarySearchTree;
 
-import java.util.Enumeration;
-
 import javax.swing.tree.TreeNode;
 
-public class BinarySearchTreeNode<T extends Comparable<T>> implements TreeNode {
-	private BinarySearchTreeNode<T> leftChild;
-	private BinarySearchTreeNode<T> rightChild;
-	private BinarySearchTreeNode<T> parent;
+public class BinarySearchTreeNode<T extends Comparable<T>, U> {
+	private BinarySearchTreeNode<T, U> leftChild;
+	private BinarySearchTreeNode<T, U> rightChild;
+	private BinarySearchTreeNode<T, U> parent;
 	private final T key;
-	private final int value = -1;
+	private final U value;
 
-	public BinarySearchTreeNode(T key, BinarySearchTreeNode<T> parent) {
+	public BinarySearchTreeNode(T key, BinarySearchTreeNode<T, U> parent) {
 		this.key = key;
 		this.parent = parent;
+		this.value = null;
 	}
 
 	public BinarySearchTreeNode(T key) {
 		this.key = key;
+		this.value = null;
 	}
 
-	public void setParent(BinarySearchTreeNode<T> parent) {
+	public void setParent(BinarySearchTreeNode<T, U> parent) {
 		this.parent = parent;
 	}
 
-	public void setLeftChild(BinarySearchTreeNode<T> leftChild) {
+	public void setLeftChild(BinarySearchTreeNode<T, U> leftChild) {
 		this.leftChild = leftChild;
 	}
 
-	public void setRightChild(BinarySearchTreeNode<T> rightChild) {
+	public void setRightChild(BinarySearchTreeNode<T, U> rightChild) {
 		this.rightChild = rightChild;
 	}
 
@@ -36,8 +36,11 @@ public class BinarySearchTreeNode<T extends Comparable<T>> implements TreeNode {
 		return key;
 	}
 
-	@Override
-	public BinarySearchTreeNode<T> getChildAt(int childIndex) {
+	public U getValue() {
+		return value;
+	}
+
+	public BinarySearchTreeNode<T, U> getChildAt(int childIndex) {
 		switch (childIndex) {
 		case 0:
 			return leftChild;
@@ -48,17 +51,14 @@ public class BinarySearchTreeNode<T extends Comparable<T>> implements TreeNode {
 		}
 	}
 
-	@Override
 	public int getChildCount() {
 		return (leftChild == null ? 0 : 1) + (rightChild == null ? 0 : 1);
 	}
 
-	@Override
-	public TreeNode getParent() {
+	public BinarySearchTreeNode<T, U> getParent() {
 		return parent;
 	}
 
-	@Override
 	public int getIndex(TreeNode node) {
 		if (parent == null) {
 			return 0;
@@ -71,19 +71,8 @@ public class BinarySearchTreeNode<T extends Comparable<T>> implements TreeNode {
 		}
 	}
 
-	@Override
-	public boolean getAllowsChildren() {
-		return true;
-	}
-
-	@Override
 	public boolean isLeaf() {
 		return leftChild == null && rightChild == null;
-	}
-
-	@Override
-	public Enumeration children() {
-		return null;
 	}
 
 }

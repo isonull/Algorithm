@@ -1,14 +1,14 @@
 package binarySearchTree;
 
-public class BinarySearchTree<T extends Comparable<T>> {
-	protected BinarySearchTreeNode<T> root;
+public class BinarySearchTree<T extends Comparable<T>, U> {
+	protected BinarySearchTreeNode<T, U> root;
 	protected int size = 0;
 	protected int depth = 0;
 
-	public boolean insert(BinarySearchTreeNode<T> node) {
+	public boolean insert(BinarySearchTreeNode<T, U> node) {
 		int depthTemp = 0;
-		BinarySearchTreeNode<T> y = null;
-		BinarySearchTreeNode<T> x = root;
+		BinarySearchTreeNode<T, U> y = null;
+		BinarySearchTreeNode<T, U> x = root;
 		if (root != null && node.getKey().compareTo(root.getKey()) < 0) {
 		}
 		while (x != null) {
@@ -47,11 +47,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		}
 	}
 
-	public BinarySearchTreeNode<T> search(T k) {
+	public BinarySearchTreeNode<T, U> search(T k) {
 		if (root == null) {
 			return null;
 		}
-		BinarySearchTreeNode<T> x = root;
+		BinarySearchTreeNode<T, U> x = root;
 		while (x != null) {
 			if (k.compareTo(x.getKey()) < 0) {
 				x = x.getChildAt(0);
@@ -64,11 +64,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		return null;
 	}
 
-	public BinarySearchTree<T> maximum(T k) {
+	public BinarySearchTree<T, U> maximum(T k) {
 		return null;
 	}
 
-	public BinarySearchTree<T> minimum(T k) {
+	public BinarySearchTree<T, U> minimum(T k) {
 		return null;
 	}
 
@@ -76,7 +76,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		inorderTreeWalkAux(root);
 	}
 
-	private void inorderTreeWalkAux(BinarySearchTreeNode<T> node) {
+	private void inorderTreeWalkAux(BinarySearchTreeNode<T, U> node) {
 		if (node != null) {
 			System.out.print("(");
 			inorderTreeWalkAux(node.getChildAt(0));
